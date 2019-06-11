@@ -13,8 +13,6 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 import api from "~/services/api";
 
-import Header from "~/components/Header/Header";
-
 import styles from "./RepositoriesStyle";
 import RepositoryItem from "./RepositoryItem/RepositoryItem";
 
@@ -32,7 +30,13 @@ class Repositories extends Component {
   };
 
   static navigationOptions = {
-    header: <Header title="Gitissues" />
+    title: "Gitissues",
+    headerTitleStyle: {
+      textAlign: "center",
+      flexGrow: 1,
+      alignSelf: "center",
+      fontSize: 18
+    }
   };
 
   async componentDidMount() {
@@ -78,7 +82,8 @@ class Repositories extends Component {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate("Issues", {
-            id: item.id
+            id: item.id,
+            repositoryName: item.full_name
           })
         }
       >
